@@ -2,6 +2,7 @@ package com.cyberagent.ameba.taxi;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -18,18 +19,20 @@ public class Delete extends Activity implements View.OnTouchListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
         TaxiPicture= (ImageView)findViewById(R.id.imageView);
-
+        TaxiPicture.setOnTouchListener(this);
     }
 
     @Override
     public boolean onTouch(View arg0, MotionEvent arg1) {
         //Viewの初期化
-        TaxiPicture = (ImageView)findViewById(R.id.imageView);
-        TaxiPicture.setOnTouchListener(this);
-        switch(arg1.getAction()) {
-            case MotionEvent.ACTION_DOWN :
+
+        switch (arg1.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.v("TOUCH", "picture touched");
                 TaxiPicture.setImageResource(R.drawable.ic_action_name);
+                TaxiPicture.invalidate();
                 return true;
+        }
         return false;
     }
 
